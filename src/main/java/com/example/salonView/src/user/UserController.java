@@ -27,4 +27,12 @@ public class UserController {
         List<GetUserRes> userRes = userProvider.getUser();
         return userRes;
     }
+
+    @ResponseBody
+    @GetMapping("/auth/kakao/callback")
+    public void  kakaoCallback(@RequestParam String code) throws BaseException {
+
+        System.out.println(code);
+
+    }
 }
