@@ -28,6 +28,13 @@ public class UserController {
         return userRes;
     }
 
+
+    /**
+     *
+     * 카카오톡 로그인 OAuth 인가 code 받는 코드
+     *
+     */
+
     @ResponseBody
     @GetMapping("/auth/kakao/callback")
     public void  kakaoCallback(@RequestParam String code) throws BaseException {
