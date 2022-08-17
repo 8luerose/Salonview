@@ -51,6 +51,31 @@ public class ShopDao {
     }
 
 
+    //헤어샵 조회: 헤어샵 검색 후 보여줄 헤어샵 목록들 (ex 서울 송파구 잠실동 근처 헤어샵)
+
+    /*
+
+    해당 쿼리를 기반으로 작성할 예정
+
+    #헤어샵 조회 쿼리
+    SELECT shop_img, shop_name, shop_address, avg(rating),shop_view
+    FROM shop
+    JOIN review on review.shop_id=shop.shop_id and shop.status='ACTIVE' and review.status='ACTIVE'
+            #GROUP BY review.shop_id
+    GROUP BY shop.shop_view
+    ORDER BY shop.shop_view DESC;
+
+    #헤어샵 살롱뷰 에디터 픽
+    SELECT shop_img, shop_name, shop_address, shop_view
+    FROM shop
+    #GROUP BY shop.shop_view;
+    ORDER BY shop.shop_view DESC
+    LIMIT 3;
+
+    *
+    * */
+
+
 }
 
 
