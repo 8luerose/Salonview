@@ -2,6 +2,7 @@ package com.springboot.security.hairshop;
 
 import com.springboot.security.config.BaseException;
 import com.springboot.security.config.BaseResponse;
+import com.springboot.security.hairshop.model.GetShopMainRes;
 import com.springboot.security.hairshop.model.GetShopRes;
 import com.springboot.security.review.ReviewProvider;
 import com.springboot.security.review.ReviewService;
@@ -41,6 +42,13 @@ public class ShopController {
         GetShopRes oneShopRes=shopProvider.getOneShop(shopId);
         return oneShopRes.getShop_name();
 
+    }
+
+    //헤어샵 메인 화면 진입 시 살롱뷰 에디터 픽 출력
+    @GetMapping("")
+    public List<GetShopMainRes> getMainShops(){
+        List<GetShopMainRes> SalonviewEditerPick = shopProvider.getMainShop();
+        return SalonviewEditerPick;
     }
 
 }

@@ -1,5 +1,6 @@
 package com.springboot.security.hairshop;
 
+import com.springboot.security.hairshop.model.GetShopMainRes;
 import com.springboot.security.hairshop.model.GetShopRes;
 import com.springboot.security.user.UserDao;
 import com.springboot.security.user.model.GetUserRes;
@@ -33,5 +34,10 @@ public class ShopProvider {
     public GetShopRes getOneShop(int shopId){
         GetShopRes shopOneRes = shopDao.shopRes(shopId);
         return shopOneRes;
+    }
+
+    public List<GetShopMainRes> getMainShop(){
+        List<GetShopMainRes> SalonviewEditerPick=shopDao.SalonviewEditerPickList();
+        return SalonviewEditerPick;
     }
 }

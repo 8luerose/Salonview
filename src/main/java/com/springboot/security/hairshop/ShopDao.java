@@ -1,5 +1,6 @@
 package com.springboot.security.hairshop;
 
+import com.springboot.security.hairshop.model.GetShopMainRes;
 import com.springboot.security.hairshop.model.GetShopRes;
 import com.springboot.security.user.model.GetUserRes;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,7 +59,7 @@ public class ShopDao {
     해당 쿼리를 기반으로 작성할 예정
 
     #헤어샵 조회 쿼리
-    SELECT shop_img, shop_name, shop_address, avg(rating),shop_view
+    SELECT shop_img, shop_name, shop_address, avg(rating)
     FROM shop
     JOIN review on review.shop_id=shop.shop_id and shop.status='ACTIVE' and review.status='ACTIVE'
             #GROUP BY review.shop_id
@@ -66,7 +67,7 @@ public class ShopDao {
     ORDER BY shop.shop_view DESC;
 
     #헤어샵 살롱뷰 에디터 픽
-    SELECT shop_img, shop_name, shop_address, shop_view
+    SELECT shop_img, shop_name, shop_address
     FROM shop
     #GROUP BY shop.shop_view;
     ORDER BY shop.shop_view DESC
@@ -74,6 +75,21 @@ public class ShopDao {
 
     *
     * */
+
+    public List<GetShopMainRes> SalonviewEditerPickList(){
+        String sql="SELECT shop_img, shop_name, shop_address\n" +
+                "    FROM shop\n" +
+                "    #GROUP BY shop.shop_view;\n" +
+                "    ORDER BY shop.shop_view DESC\n" +
+                "    LIMIT 3;";
+        return this.jdbcTemplate.query(sql,
+                (rs, rowNum) ->
+                        new GetShopMainRes(
+                                rs.getString("shop_img"),
+                                rs.getString("shop_name"),
+                                rs.getString("shop_address")
+                        ));
+    }
 
 
 }
