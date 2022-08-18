@@ -2,6 +2,7 @@ package com.springboot.security.hairshop;
 
 import com.springboot.security.hairshop.model.GetShopMainRes;
 import com.springboot.security.hairshop.model.GetShopRes;
+import com.springboot.security.hairshop.model.GetShopSearchRes;
 import com.springboot.security.user.UserDao;
 import com.springboot.security.user.model.GetUserRes;
 import org.slf4j.Logger;
@@ -39,5 +40,10 @@ public class ShopProvider {
     public List<GetShopMainRes> getMainShop(){
         List<GetShopMainRes> SalonviewEditerPick=shopDao.SalonviewEditerPickList();
         return SalonviewEditerPick;
+    }
+
+    public  List<GetShopSearchRes> getShopSearchList(String searchRegion){
+        List<GetShopSearchRes> searchShop=shopDao.searchShopList(searchRegion);
+        return searchShop;
     }
 }

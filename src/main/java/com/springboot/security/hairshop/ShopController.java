@@ -1,14 +1,9 @@
 package com.springboot.security.hairshop;
 
-import com.springboot.security.config.BaseException;
-import com.springboot.security.config.BaseResponse;
 import com.springboot.security.hairshop.model.GetShopMainRes;
 import com.springboot.security.hairshop.model.GetShopRes;
-import com.springboot.security.review.ReviewProvider;
-import com.springboot.security.review.ReviewService;
-import com.springboot.security.user.model.GetUserRes;
+import com.springboot.security.hairshop.model.GetShopSearchRes;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,7 +23,7 @@ public class ShopController {
     }
 
     //헤어샵 이름으로 검색 시 이름 포함된 헤어샵 리스트로 출력
-    @GetMapping("/searchShopNames")
+    @GetMapping("/searchShopNames")  //ex http://localhost:8080/shops/searchShopNames?shopName=이철
     @ResponseBody
     public List<GetShopRes> getShops(@RequestParam("shopName")String shopName) {
 
@@ -49,6 +44,13 @@ public class ShopController {
     public List<GetShopMainRes> getMainShops(){
         List<GetShopMainRes> SalonviewEditerPick = shopProvider.getMainShop();
         return SalonviewEditerPick;
+    }
+
+    //헤어샵 지역 검색 후 리스트 조회
+    @GetMapping("/searchShopList") // ..http://localhost:8080/shops/searchShopList?searchRegion=광진구
+    public List<GetShopSearchRes> getShopSearchLists(@RequestParam("searchRegion")String searchRegion) {
+        List<GetShopSearchRes> searchShop = shopProvider.getShopSearchList(searchRegion);
+        return searchShop;
     }
 
 }

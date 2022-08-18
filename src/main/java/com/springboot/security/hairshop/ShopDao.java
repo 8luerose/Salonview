@@ -2,6 +2,7 @@ package com.springboot.security.hairshop;
 
 import com.springboot.security.hairshop.model.GetShopMainRes;
 import com.springboot.security.hairshop.model.GetShopRes;
+import com.springboot.security.hairshop.model.GetShopSearchRes;
 import com.springboot.security.user.model.GetUserRes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -16,7 +17,7 @@ public class ShopDao {
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public void setDataSource(DataSource dataSource){
+    public void setDataSource(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
@@ -28,27 +29,28 @@ public class ShopDao {
 
 
     //헤어샵 찾기: 헤어샵 이름으로 검색 시, 헤어샵의 이름, 주소 보여주기
-    public List<GetShopRes> shopListRes(String shopName){
-        String sql="select * from shop where shop_name like ? ";
+    public List<GetShopRes> shopListRes(String shopName) {
+        String sql = "select * from shop where shop_name like ? ";
         String wrappedKeyword = "%" + shopName + "%";
 
         return this.jdbcTemplate.query(sql,
                 (rs, rowNum) ->
                         new GetShopRes(
-                            rs.getInt("shop_id"),
-                            rs.getString("shop_name"),
-                            rs.getString("shop_address")
-                ),wrappedKeyword);
+                                rs.getInt("shop_id"),
+                                rs.getString("shop_name"),
+                                rs.getString("shop_address")
+                        ), wrappedKeyword);
     }
+
     public GetShopRes shopRes(int shopId) {
-        String sql="select * from shop where shop_id=? ";
+        String sql = "select * from shop where shop_id=? ";
         return this.jdbcTemplate.queryForObject(sql,
                 (rs, rowNum) ->
                         new GetShopRes(
                                 rs.getInt("shop_id"),
                                 rs.getString("shop_name"),
                                 rs.getString("shop_address")
-                        ),shopId);
+                        ), shopId);
     }
 
 
@@ -76,8 +78,8 @@ public class ShopDao {
     *
     * */
 
-    public List<GetShopMainRes> SalonviewEditerPickList(){
-        String sql="SELECT shop_img, shop_name, shop_address\n" +
+    public List<GetShopMainRes> SalonviewEditerPickList() {
+        String sql = "SELECT shop_img, shop_name, shop_address\n" +
                 "    FROM shop\n" +
                 "    #GROUP BY shop.shop_view;\n" +
                 "    ORDER BY shop.shop_view DESC\n" +
@@ -89,6 +91,26 @@ public class ShopDao {
                                 rs.getString("shop_name"),
                                 rs.getString("shop_address")
                         ));
+    }
+
+
+    public List<GetShopSearchRes> searchShopList(String searchRegion) {
+        String sql = "SELECT shop_img, shop_name, shop_address, avg(rating) as shop_rating \n" +
+                "    FROM shop\n" +
+                "    JOIN review on review.shop_id=shop.shop_id and shop.status='ACTIVE' and review.status='ACTIVE'\n" +
+                "    WHERE shop.shop_address like ?\n" +
+                "    GROUP BY shop.shop_view\n" +
+                "    ORDER BY shop.shop_view DESC";
+        String wrappedRegionKeyword = "%" + searchRegion + "%";
+
+        return this.jdbcTemplate.query(sql,
+                (rs, rowNum) ->
+                        new GetShopSearchRes(
+                                rs.getString("shop_img"),
+                                rs.getString("shop_name"),
+                                rs.getString("shop_address"),
+                                rs.getString("shop_rating")
+                        ), wrappedRegionKeyword );
     }
 
 
