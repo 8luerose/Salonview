@@ -1,3 +1,5 @@
+/**
+
 package com.springboot.security.config.mapper;
 
 
@@ -24,3 +26,4 @@ public interface BoardMapper {
     public int selectBoardTotalCount(Criteria criteria);
 
 }
+ */
