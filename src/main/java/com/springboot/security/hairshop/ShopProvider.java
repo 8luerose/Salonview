@@ -43,17 +43,26 @@ public class ShopProvider {
     }
 
     /*
+    (성공)헤어샵 지역 검색 후 리스트 조회 1차시도
     public  List<GetShopSearchRes> getShopSearchList(String searchRegion){
         List<GetShopSearchRes> searchShop=shopDao.searchShopList(searchRegion);
         return searchShop;
     }
      */
 
-     public  List<GetShopSearchRes> getShopSearchList(String searchRegion,int type){
+    /*
+    (성공)헤어샵 리스트 조회 + type(염색, 펌..) 2차시도
+    public  List<GetShopSearchRes> getShopSearchList(String searchRegion,int type){
              List<GetShopSearchRes> searchShop=shopDao.searchShopList(searchRegion,type);
              return searchShop;
-     }
+     }*/
 
+
+    //작성중
+    public  List<GetShopSearchRes> getShopSearchList(String searchRegion,int type,int page){
+        List<GetShopSearchRes> searchShop=shopDao.searchShopList(searchRegion,type,page);
+        return searchShop;
+    }
 
 
 

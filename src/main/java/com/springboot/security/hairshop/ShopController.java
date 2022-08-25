@@ -47,7 +47,7 @@ public class ShopController {
     }
 
     /*
-    //헤어샵 지역 검색 후 리스트 조회
+    //(성공)헤어샵 지역 검색 후 리스트 조회 1차시도
     @GetMapping("/searchShopList") // ..http://localhost:8080/shops/searchShopList?searchRegion=광진구
     public List<GetShopSearchRes> getShopSearchLists(@RequestParam("searchRegion")String searchRegion) {
         List<GetShopSearchRes> searchShop = shopProvider.getShopSearchList(searchRegion);
@@ -56,13 +56,28 @@ public class ShopController {
      */
 
 
+  /*
+  (성공)헤어샵 리스트 조회 + type(염색, 펌..) 2차시도
   @GetMapping("/searchShopList/{type}")
-        // ..http://localhost:8080/shops/searchShopList/1?searchRegion=광진구
+        // ..http://localhost:8080/shops/searchShopList/0?searchRegion=광진구
           public List<GetShopSearchRes> getShopSearchLists(@PathVariable("type") int type,
                                                            @RequestParam("searchRegion")String searchRegion) {
       List<GetShopSearchRes> searchShop = shopProvider.getShopSearchList(searchRegion, type);
       return searchShop;
-  }
+  }*/
+
+
+    @GetMapping("/searchShopList/{type}")       //작성 중
+    // ..http://localhost:8080/shops/searchShopList/0?searchRegion=광진구
+    public List<GetShopSearchRes> getShopSearchLists(@PathVariable("type") int type,
+                                                     @RequestParam("searchRegion")String searchRegion,
+                                                     @RequestParam("page")int page) {
+        List<GetShopSearchRes> searchShop = shopProvider.getShopSearchList(searchRegion, type, page);
+        return searchShop;
+    }
+
+
+
 
 
        //헤어샵 지역 검색 후 리스트 조회와 type(염색 펌 커트 기타시술 바버샵) 그리고 page

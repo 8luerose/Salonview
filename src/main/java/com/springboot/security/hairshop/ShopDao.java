@@ -94,7 +94,9 @@ public class ShopDao {
     }
 
 
-    /*public List<GetShopSearchRes> searchShopList(String searchRegion) {
+    /*
+    (성공)헤어샵 리스트 조회 1차시도
+    public List<GetShopSearchRes> searchShopList(String searchRegion) {
         String sql = "SELECT shop_img, shop_name, shop_address, avg(rating) as shop_rating \n" +
                 "    FROM shop\n" +
                 "    JOIN review on review.shop_id=shop.shop_id and shop.status='ACTIVE' and review.status='ACTIVE'\n" +
@@ -114,9 +116,42 @@ public class ShopDao {
     }*/
 
 
+    /*
+    (성공)헤어샵 리스트 조회 + type(염색, 펌..) 2차시도
     public List<GetShopSearchRes> searchShopList(String searchRegion, int type) {
 
-        if(type==1) {
+        if(type==0) //기본값, 조회수 순으로 검색
+            {
+            String sql = "SELECT shop_img, shop_name, shop_address, avg(rating) as shop_rating \n" +
+                    "    FROM shop\n" +
+                    "    JOIN review on review.shop_id=shop.shop_id and shop.status='ACTIVE' and review.status='ACTIVE'\n" +
+                    "    WHERE shop.shop_address like ?\n" +
+                    "    GROUP BY shop.shop_view\n" +
+                    "    ORDER BY shop.shop_view DESC";
+            String wrappedRegionKeyword = "%" + searchRegion + "%";
+
+            return this.jdbcTemplate.query(sql,
+                    (rs, rowNum) ->
+                            new GetShopSearchRes(
+                                    rs.getString("shop_img"),
+                                    rs.getString("shop_name"),
+                                    rs.getString("shop_address"),
+                                    rs.getString("shop_rating")
+                            ), wrappedRegionKeyword);
+        }
+
+
+        else return null;
+    }*/
+
+
+
+
+    //작성중
+    public List<GetShopSearchRes> searchShopList(String searchRegion, int type, int page) {
+
+        if(type==0) //기본값, 조회수 순으로 검색
+        {
             String sql = "SELECT shop_img, shop_name, shop_address, avg(rating) as shop_rating \n" +
                     "    FROM shop\n" +
                     "    JOIN review on review.shop_id=shop.shop_id and shop.status='ACTIVE' and review.status='ACTIVE'\n" +
@@ -140,8 +175,6 @@ public class ShopDao {
     }
 
 
-
-
        /*public List<GetShopSearchRes> searchShopList(String searchRegion, int type, int page) {
            int searchOffset = 5 * (page - 1);
 
@@ -162,6 +195,9 @@ public class ShopDao {
                                    rs.getString("shop_rating")
                            ), wrappedRegionKeyword);
        }*/
+
+
+
 
 
 }
