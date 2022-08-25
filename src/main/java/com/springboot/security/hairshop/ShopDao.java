@@ -114,6 +114,32 @@ public class ShopDao {
     }
 
 
+    /**
+     *
+     *  public List<GetShopSearchRes> searchShopList(String searchRegion, int type, int page) {
+     *          int searchOffset = 5(page-1);
+     *
+     *         String sql = "SELECT shop_img, shop_name, shop_address, avg(rating) as shop_rating \n" +
+     *                 "    FROM shop\n" +
+     *                 "    JOIN review on review.shop_id=shop.shop_id and shop.status='ACTIVE' and review.status='ACTIVE'\n" +
+     *                 "    WHERE shop.shop_address like ?\n" +
+     *                 "    GROUP BY shop.shop_view\n" +
+     *                 "    ORDER BY shop.shop_view DESC"
+     *                 "    LIMIT 5, OFFSET searchOffset";
+     *         String wrappedRegionKeyword = "%" + searchRegion + "%";
+     *
+     *         return this.jdbcTemplate.query(sql,
+     *                 (rs, rowNum) ->
+     *                         new GetShopSearchRes(
+     *                                 rs.getString("shop_img"),
+     *                                 rs.getString("shop_name"),
+     *                                 rs.getString("shop_address"),
+     *                                 rs.getString("shop_rating")
+     *                         ), wrappedRegionKeyword );
+     *     }
+     */
+
+
 }
 
 

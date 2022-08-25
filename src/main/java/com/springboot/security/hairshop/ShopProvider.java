@@ -46,4 +46,12 @@ public class ShopProvider {
         List<GetShopSearchRes> searchShop=shopDao.searchShopList(searchRegion);
         return searchShop;
     }
+
+    /**
+     *  public  List<GetShopSearchRes> getShopSearchList(String searchRegion,int type,int page){
+     *         List<GetShopSearchRes> searchShop=shopDao.searchShopList(searchRegion,type,page);
+     *         return searchShop;
+     *     }
+     *
+     */
 }

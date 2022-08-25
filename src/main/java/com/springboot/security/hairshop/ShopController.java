@@ -53,4 +53,15 @@ public class ShopController {
         return searchShop;
     }
 
+
+    /**
+     *
+     *   @GetMapping("/searchShopList/{type}")
+     *   // ..http://localhost:8080/shops/searchShopList?searchRegion=광진구/1?page=0
+     *     public List<GetShopSearchRes> getShopSearchLists(@RequestParam("searchRegion")String searchRegion,
+     *     @PathVariable("type") int type, @RequestParam("page")int page) {
+     *         List<GetShopSearchRes> searchShop = shopProvider.getShopSearchList(searchRegion,type,page);
+     *         return searchShop;
+     */
+
 }
