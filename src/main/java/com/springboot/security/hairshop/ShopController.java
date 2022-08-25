@@ -46,22 +46,33 @@ public class ShopController {
         return SalonviewEditerPick;
     }
 
+    /*
     //헤어샵 지역 검색 후 리스트 조회
     @GetMapping("/searchShopList") // ..http://localhost:8080/shops/searchShopList?searchRegion=광진구
     public List<GetShopSearchRes> getShopSearchLists(@RequestParam("searchRegion")String searchRegion) {
         List<GetShopSearchRes> searchShop = shopProvider.getShopSearchList(searchRegion);
         return searchShop;
     }
-
-
-    /**
-     *
-     *   @GetMapping("/searchShopList/{type}")
-     *   // ..http://localhost:8080/shops/searchShopList?searchRegion=광진구/1?page=0
-     *     public List<GetShopSearchRes> getShopSearchLists(@RequestParam("searchRegion")String searchRegion,
-     *     @PathVariable("type") int type, @RequestParam("page")int page) {
-     *         List<GetShopSearchRes> searchShop = shopProvider.getShopSearchList(searchRegion,type,page);
-     *         return searchShop;
      */
+
+
+  @GetMapping("/searchShopList/{type}")
+        // ..http://localhost:8080/shops/searchShopList/1?searchRegion=광진구
+          public List<GetShopSearchRes> getShopSearchLists(@PathVariable("type") int type,
+                                                           @RequestParam("searchRegion")String searchRegion) {
+      List<GetShopSearchRes> searchShop = shopProvider.getShopSearchList(searchRegion, type);
+      return searchShop;
+  }
+
+
+       //헤어샵 지역 검색 후 리스트 조회와 type(염색 펌 커트 기타시술 바버샵) 그리고 page
+      /*  @GetMapping("/searchShopList/{type}")
+        // ..http://localhost:8080/shops/searchShopList?searchRegion=광진구/1?page=0
+          public List<GetShopSearchRes> getShopSearchLists(@RequestParam("searchRegion")String searchRegion,
+         @PathVariable("type") int type, @RequestParam("page")int page) {
+            List<GetShopSearchRes> searchShop = shopProvider.getShopSearchList(searchRegion,type,page);
+              return searchShop;
+        }*/
+
 
 }

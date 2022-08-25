@@ -42,16 +42,26 @@ public class ShopProvider {
         return SalonviewEditerPick;
     }
 
+    /*
     public  List<GetShopSearchRes> getShopSearchList(String searchRegion){
         List<GetShopSearchRes> searchShop=shopDao.searchShopList(searchRegion);
         return searchShop;
     }
-
-    /**
-     *  public  List<GetShopSearchRes> getShopSearchList(String searchRegion,int type,int page){
-     *         List<GetShopSearchRes> searchShop=shopDao.searchShopList(searchRegion,type,page);
-     *         return searchShop;
-     *     }
-     *
      */
+
+     public  List<GetShopSearchRes> getShopSearchList(String searchRegion,int type){
+             List<GetShopSearchRes> searchShop=shopDao.searchShopList(searchRegion,type);
+             return searchShop;
+     }
+
+
+
+
+    /* public  List<GetShopSearchRes> getShopSearchList(String searchRegion,int type,int page){
+             List<GetShopSearchRes> searchShop=shopDao.searchShopList(searchRegion,type,page);
+             return searchShop;
+     }*/
+
 }
+
+
