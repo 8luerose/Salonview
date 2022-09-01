@@ -68,7 +68,7 @@ public class ShopController {
 
 
     @GetMapping("/searchShopList/{type}")       //작성 중
-    // ..http://localhost:8080/shops/searchShopList/0?searchRegion=광진구
+    // ..http://localhost:8080/shops/searchShopList/0?searchRegion=광진구?page=1
     public List<GetShopSearchRes> getShopSearchLists(@PathVariable("type") int type,
                                                      @RequestParam("searchRegion")String searchRegion,
                                                      @RequestParam("page")int page) {
