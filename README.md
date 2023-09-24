@@ -65,7 +65,8 @@
 
 <br>
 (2) 마이 페이지
-![salonview 마이](https://github.com/8luerose/Salonview/assets/105616046/f0283f07-2da4-40d7-a279-27300d5eef93)
+
+![salonview 마이](https://github.com/8luerose/Salonview/assets/105616046/56d69b80-9b00-45a9-bede-d1f09e67f45a)
 
 
 <br> 
