@@ -67,8 +67,17 @@
 (2) 마이 페이지
 ![salonview 마이](https://github.com/8luerose/Salonview/assets/105616046/f0283f07-2da4-40d7-a279-27300d5eef93)
 
+
 <br> 
+
+
+
 (3) Hot hair
+
+
+
+
+
 
 <img width="459" alt="스크린샷 2023-09-25 오전 3 06 01" src="https://github.com/8luerose/Salonview/assets/105616046/ab5b89c9-7dba-4884-a33d-4d18c58ffa33">
 
